@@ -22,8 +22,6 @@ const MessagesSlider = ({ type }) => {
     const [messages] = useCollectionData(query, { idField: 'id' });
     return (
         <ul>
-            <li>Hello</li>
-            <li>World</li>
             {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
         </ul>
     )

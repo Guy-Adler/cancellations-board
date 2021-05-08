@@ -1,25 +1,42 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import MessagesSlider from '../Components/MessagesSlider';
+import kfarLogo from '../assets/kfarLogo.png';
 
 const Desktop = () => {
+	const [currentDate, setCurrentDate] = useState(new Date());
+
+	useEffect(() => {
+		setTimeout(() => setCurrentDate(new Date()), 1000)
+	}, [currentDate])
+
+	const getTime = date => {
+		return `${date.getHours()}:${date.getMinutes()}`;
+	}
+
+	const getDate = date => {
+		return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+	}	
+
 	return (
 		<div className="App-Desktop">
 			<div className="header">
 				<div className="header-date">
-					<span>02/05/2021</span>
+					<span>{getDate(currentDate)}</span>
 				</div>
 				<div className="header-logo">
-					<span>The Green Village</span>
+					<div>
+					<img src={kfarLogo} alt="הכפר הירוק" height="5%"/>
+					</div>
 				</div>
 				<div className="header-time">
-					<span>08:30</span>
+					<span>{getTime(currentDate)}</span>
 				</div>
 			</div>
 			<div className="title changes">
-				<h4 className="title-text">Timetable Changes</h4>
+				<h4 className="title-text">הודעות כלליות</h4>
 			</div>
 			<div className="title system">
-				<h4 className="title-text">System Messages</h4>
+				<h4 className="title-text">הודעות מערכת</h4>
 			</div>
 			<div className="content changes">
 				<MessagesSlider type="cancellations"/>
