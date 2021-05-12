@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
@@ -17,28 +17,78 @@ firebase.initializeApp({
 const firestore = firebase.firestore();
 
 
-const MessagesSlider = ({ type }) => {
+const MessagesSlider = ({ type, hide, refresh }) => {
     const messagesRef = firestore.collection(type);
     const query = messagesRef.orderBy('from');
     const [messages] = useCollectionData(query, { idField: 'id' });
 
     const [marquee, setMarquee] = useState(false);
 
-    useEffect(() => {
+    useLayoutEffect(() => {
         const marqueeElement = document.getElementById(`marquee-${type}`);
         const wrapperElement = document.getElementById(`slide-wrapper-${type}`);
         setMarquee(marqueeElement.getBoundingClientRect().height > wrapperElement.getBoundingClientRect().height)
-    }, [type, messages])
+        if (messages) {
+            const marquee2 = document.getElementById(`marquee-${type}-2`);
+            marqueeElement.style["animation-duration"] = 80 * messages.length + "s";
+            marquee2.style["animation-duration"] = 80 * messages.length + "s";
+        }
+    }, [type, messages, refresh])
 
     return (
-        <div className="slider-wrapper" id={`slide-wrapper-${type}`}>
+        <div className="slider-wrapper" id={`slide-wrapper-${type}`} hidden={hide}>
         <ul className={marquee ? "marquee" : ""} id={`marquee-${type}`}>
-            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}        
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
         </ul>
         {/*This needs to be added again for it to be continuous*/}
-        <ul className={marquee ? "marquee marquee-2" : "hide"}>
-            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}            
-        </ul>
+        <ul className={marquee ? "marquee marquee-2" : "hide"} id={`marquee-${type}-2`}>
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}
+            {messages && messages.map(msg => <Message key={msg.id} msg={msg} isSystem={type === 'system'}/>)}        </ul>
         </div>
     )
 }

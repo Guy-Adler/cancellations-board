@@ -14,7 +14,7 @@ const Desktop = () => {
 	}
 
 	const getDate = date => {
-		return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+		return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
 	}	
 
 	return (

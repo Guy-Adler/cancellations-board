@@ -1,6 +1,7 @@
 .marquee {
+    
     position: relative;
-    animation: scrollUp 20s linear infinite ;
+    animation: scrollUp 60s linear infinite ;
 }
 
 @keyframes scrollUp {
@@ -16,6 +17,7 @@
 }
 
 .marquee-2 {
+    animation-duration: 30s;
     margin-block-start: 0;
 }
 
